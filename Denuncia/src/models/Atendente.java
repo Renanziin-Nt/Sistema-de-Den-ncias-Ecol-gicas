@@ -1,5 +1,6 @@
 package models;
 
+import screen.Login;
 import db.JsonDatabase;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -23,18 +24,18 @@ public class Atendente extends Usuario {
     }
 
     // Método para registrar um denunciante
-    public void registrarDenunciante(String nome, String telefone, String estado) {
+    public void registrarDenunciante(String nome, String telefone, String estado, int atendenteId, String atendente) {
         List<Denunciante> denunciantes = dbDenunciantes.readDenunciantes();
 
         int novoId = denunciantes.size() + 1; // ID é o tamanho atual + 1
-        Denunciante novoDenunciante = new Denunciante(novoId, nome, telefone, estado, this.getId(), this.getNome());
+        Denunciante novoDenunciante = new Denunciante(novoId, nome, telefone, estado, atendenteId, atendente);
 
         dbDenunciantes.addDenunciante(novoDenunciante);
         System.out.println("Denunciante registrado com sucesso!");
     }
 
     // Método para registrar um chamado
-    public void registrarChamado(String localizacao, String descricao, int denuncianteId) {
+    public void registrarChamado(String localizacao, String descricao, int denuncianteId, String atendente) {
         List<Denunciante> denunciantes = dbDenunciantes.readDenunciantes();
         Denunciante denunciante = buscarDenunciantePorId(denunciantes, denuncianteId);
 
@@ -51,8 +52,8 @@ public class Atendente extends Usuario {
         novoChamado.setStatus(Chamados.Status.ABERTO); // Usando o método setStatus com enum Status
         novoChamado.setDenuncianteId(denunciante.getId());
         novoChamado.setDenuncianteNome(denunciante.getNome());
-        novoChamado.setAtendenteId(this.getId()); // Definindo o ID do atendente
-        novoChamado.setAtendenteNome(this.getNome()); // Definindo o nome do atendente
+       /*  novoChamado.setAtendenteId(AtendenteId); */ // Definindo o ID do atendente
+        novoChamado.setAtendenteNome(atendente); // Definindo o nome do atendente
 
         dbChamados.addChamado(novoChamado);
         System.out.println("Chamado registrado com sucesso!");

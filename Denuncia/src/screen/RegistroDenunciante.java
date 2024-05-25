@@ -12,7 +12,6 @@ public class RegistroDenunciante extends JPanel {
 
     public RegistroDenunciante(JFrame frame, Atendente atendente) {
         this.frame = frame;
-        this.atendente = atendente;
         setLayout(new BorderLayout());
         setBackground(new Color(240, 240, 240));
 
@@ -52,7 +51,7 @@ public class RegistroDenunciante extends JPanel {
                 String nome = nomeField.getText();
                 String telefone = telefoneField.getText();
                 String estado = estadoField.getText();
-                atendente.registrarDenunciante(nome, telefone, estado);
+                atendente.registrarDenunciante(nome, telefone, estado, atendente.getId(),atendente.getNome());
                 JOptionPane.showMessageDialog(frame, "Denunciante registrado com sucesso!");
             }
         });

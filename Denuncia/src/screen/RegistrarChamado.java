@@ -15,7 +15,6 @@ public class RegistrarChamado extends JPanel {
 
     public RegistrarChamado(JFrame frame, Atendente atendente) {
         this.frame = frame;
-        this.atendente = atendente;
         setLayout(new BorderLayout());
         setBackground(new Color(240, 240, 240));
 
@@ -55,9 +54,11 @@ public class RegistrarChamado extends JPanel {
                 String localizacao = localizacaoField.getText();
                 String descricao = descricaoField.getText();
                 int denuncianteId = Integer.parseInt(denuncianteIdField.getText());
+                
 
                 try {
-                    atendente.registrarChamado(localizacao, descricao, denuncianteId);
+                    System.out.println(atendente.getNome());
+                    atendente.registrarChamado(localizacao, descricao, denuncianteId, atendente.getNome());
                     JOptionPane.showMessageDialog(frame, "Chamado registrado com sucesso!");
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(frame, "Erro ao registrar chamado: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);

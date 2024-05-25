@@ -1,6 +1,7 @@
 package models;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Chamados {
     private int id;
@@ -11,6 +12,11 @@ public class Chamados {
     private String denuncianteNome;
     private int atendenteId;
     private String atendenteNome;
+    private List<String> resolucoes;
+
+    public Chamados() {
+        resolucoes = new ArrayList<>();
+    }
 
     public enum Status {
         ABERTO,
@@ -80,5 +86,13 @@ public class Chamados {
 
     public void setAtendenteNome(String atendenteNome) {
         this.atendenteNome = atendenteNome;
+    }
+
+    public List<String> getResolucoes() {
+        return resolucoes;
+    }
+
+    public void setResolucoes(List<String> resolucoes) {
+        this.resolucoes = resolucoes;
     }
 }
